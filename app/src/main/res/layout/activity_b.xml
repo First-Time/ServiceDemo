@@ -4,33 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ActivityB">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_start_service"
+        android:id="@+id/btn_bind_service"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="startService"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="B bindService"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_stop_service"
+        android:id="@+id/btn_unbind_service"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="stopService"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_start_service" />
+        android:text="B unbindService"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_bind_service" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_start_activityA"
+        android:id="@+id/btn_finish"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="startActivityA"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_stop_service" />
-
+        android:text="B finish"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_unbind_service" />
 </androidx.constraintlayout.widget.ConstraintLayout>
