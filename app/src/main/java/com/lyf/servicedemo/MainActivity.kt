@@ -6,6 +6,7 @@ import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
+    private val className = MainActivity::class.java.simpleName
     private lateinit var serviceIntent: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,8 +46,11 @@ class MainActivity : BaseActivity() {
 
     private fun initListener() {
         btn_start_service.setOnClickListener {
-            val componentName = startService(serviceIntent)
-            componentName?.let { println(componentName.className) }
+            if (isServiceAlive(this, TestOneService::class.java.name)) {
+                Log.i(TAG, "$className - 服务正在运行")
+                return@setOnClickListener
+            }
+            startService(serviceIntent)
         }
 
         btn_stop_service.setOnClickListener {

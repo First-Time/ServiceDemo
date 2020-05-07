@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_b.*
 
 class ActivityB : AppCompatActivity() {
+    private var isConnected = false
+
     companion object {
         private const val TAG = "Service"
         private val className = ActivityB::class.java.simpleName
@@ -48,14 +50,15 @@ class ActivityB : AppCompatActivity() {
             intent.putExtra("from", className)
             Log.i(TAG, "--------------------------------------------------")
             Log.i(TAG, "$className 执行 bindService")
-            bindService(intent, conn, Context.BIND_AUTO_CREATE)
+            isConnected = bindService(intent, conn, Context.BIND_AUTO_CREATE)
         }
 
         btn_unbind_service.setOnClickListener {
-            if (isBind) {
+            if (isConnected) {
                 Log.i(TAG, "--------------------------------------------------")
                 Log.i(TAG, "$className 执行 unbindService")
                 unbindService(conn)
+                isConnected = false
             }
         }
 
@@ -68,6 +71,10 @@ class ActivityB : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        if (isConnected) {
+            unbindService(conn)
+            isConnected = false
+        }
         Log.i(TAG, "$className - onDestroy")
     }
 }

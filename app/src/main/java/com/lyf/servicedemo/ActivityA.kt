@@ -46,6 +46,16 @@ class ActivityA : AppCompatActivity() {
     }
 
     private fun initListener() {
+        btn_start_service.setOnClickListener {
+            val intent = Intent(this, TestTwoService::class.java)
+            startService(intent)
+        }
+
+        btn_stop_service.setOnClickListener {
+            val intent = Intent(this, TestTwoService::class.java)
+            stopService(intent)
+        }
+
         btn_bind_service.setOnClickListener {
             val intent = Intent(this, TestTwoService::class.java)
             intent.putExtra("from", className)
@@ -55,10 +65,11 @@ class ActivityA : AppCompatActivity() {
         }
 
         btn_unbind_service.setOnClickListener {
-            if (isBind) {
+            if (isConnected) {
                 Log.i(TAG, "--------------------------------------------------")
                 Log.i(TAG, "$className 执行 unbindService")
                 unbindService(conn)
+                isConnected = false
             }
         }
 
@@ -78,6 +89,10 @@ class ActivityA : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        if (isConnected) {
+            unbindService(conn)
+            isConnected = false
+        }
         Log.i(TAG, "$className - onDestroy")
     }
 }

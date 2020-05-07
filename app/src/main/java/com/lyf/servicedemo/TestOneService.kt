@@ -29,9 +29,10 @@ class TestOneService : Service() {
                     "$className Thread ID = ${Thread.currentThread().id} number = ${number++}"
                 )
                 Thread.sleep(500)
-                /*if (number == 10) {
-                    stopSelf()
-                }*/
+                if (number == 10) {
+                    isContinue = false
+//                    stopSelf()
+                }
             }
         }).start()
         return super.onStartCommand(intent, flags, startId)

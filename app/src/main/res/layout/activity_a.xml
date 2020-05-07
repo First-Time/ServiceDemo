@@ -7,13 +7,31 @@
     tools:context=".ActivityA">
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_start_service"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="A startService"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_stop_service"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="A stopService"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_start_service" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_bind_service"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="A bindService"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/btn_stop_service" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_unbind_service"
